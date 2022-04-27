@@ -13,6 +13,8 @@
 
 # ------------------------------------------------------------------------------
 # Trains a model with SGD to predict NDVI values from RGB pixels
+# Inputs:
+# - Freiburg forest dataset -> http://deepscene.cs.uni-freiburg.de/
 # Outputs:
 # - ndvi_predictor.joblib -> Trained model for NDVI prediction
 # - ndvi_scaler.joblib -> Trained input scaler
