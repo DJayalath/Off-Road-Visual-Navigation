@@ -10,3 +10,6 @@ This work provides a method for real-time and low-cost visual navigation for gro
 5. Run the TFLite model online with `tflite-model/tflite_standalone.py`
 
 Notes: Prior to step 5, it may be necessary to resolve the order of the model's output heads. See Appendix D of the paper. For further information on any of the steps, see the paper and the included comments in the code.
+
+## License
+This work is all the original work of the author and is distributed under the GNU General Public License v3.0.
