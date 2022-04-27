@@ -1,9 +1,7 @@
 ################################################################################
 #
-# (c) Copyright University of Southampton, 2022
-#
-# Copyright in this software belongs to the University of Southampton,
-# Highfield, University Road, Southampton, SO17 1BJ, United Kingdom
+# This work is all the original work of the author and is distributed under the
+# GNU General Public License v3.0.
 #
 # Created By : Dulhan Jayalath
 # Date : 2022/04/27
