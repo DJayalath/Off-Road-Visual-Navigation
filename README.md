@@ -18,8 +18,11 @@ Notes: Prior to step 5, it may be necessary to resolve the order of the model's 
 - scikit-learn 1.x
 ### Inference
 - TFLite 2.x
+- SciPy 1.x
+### Control (optional via Pixhawk Autopilot)
 - DroneKit 2.x
 - pymavlink 2.x 
 
+Other miscellaneous libraries (e.g. matplotlib) will be needed to run the code but are not required.
 ## License
 This work is all the original work of the author and is distributed under the GNU General Public License v3.0.
