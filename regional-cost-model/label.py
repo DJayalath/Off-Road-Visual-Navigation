@@ -156,11 +156,6 @@ def label_all():
                 if v > vmax:
                     vmax = v
         print("(Min, Max): ", vmin, vmax)
-        print("Scaling costs...")
-        for key, val in labels.items():
-            for i in range(NUM_STRIPS):
-                x = val[f'cost_{i}']
-                labels[key][f'cost_{i}'] = ((x - vmin) / (vmax - vmin))
         
         print("Writing predictions...")
         import json
