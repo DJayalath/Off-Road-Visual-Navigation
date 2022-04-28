@@ -11,5 +11,15 @@ This work provides a method for real-time and low-cost visual navigation for gro
 
 Notes: Prior to step 5, it may be necessary to resolve the order of the model's output heads. See Appendix D of the paper. For further information on any of the steps, see the paper and the included comments in the code.
 
+## Requirements
+### Training
+- TensorFlow 2.x
+- OpenCV 4.x
+- scikit-learn 1.x
+### Inference
+- TFLite 2.x
+- DroneKit 2.x
+- pymavlink 2.x 
+
 ## License
 This work is all the original work of the author and is distributed under the GNU General Public License v3.0.
