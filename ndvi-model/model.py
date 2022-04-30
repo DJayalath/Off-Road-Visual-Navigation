@@ -18,10 +18,11 @@
 # - ndvi_scaler.joblib -> Trained input scaler
 #-------------------------------------------------------------------------------
 
-# FIXME: Change this to directory of Freiburg dataset rgb files
+# FIXME: Change this to point to Freiburg dataset rgb files
 TRAIN_FILES = 'train/rgb/*.jpg'
 TEST_FILES = 'test/rgb/*.jpg'
 
+from sklearn.model_selection import cross_val_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import SGDRegressor
 from joblib import dump
@@ -82,13 +83,22 @@ scaler.fit(X_train)
 X_train = scaler.transform(X_train)
 X_test = scaler.transform(X_test)
 
-# Fit model
+# 5-fold cross-validation on training data
+print("\n---- 5-Fold Cross Validation ----")
+reg = SGDRegressor(max_iter=1000, tol=1e-3)
+scores = cross_val_score(reg, X_train, y_train)
+print(f"\n{scores.mean()} R^2 with a standard deviation of {scores.std()}\n")
+print("----\n")
+
+# Create new model fitted to all training data
+print("\n---- Fitting to train data ----")
 reg = SGDRegressor(max_iter=1000, tol=1e-3)
 reg.fit(X_train, y_train)
 
 # Compute R^2 scores on test and train set
-print(f"Train: {reg.score(X_train, y_train)}")
-print(f"Test: {reg.score(X_test, y_test)}")
+print(f"\nR^2 Train: {reg.score(X_train, y_train)}")
+print(f"R^2 Test: {reg.score(X_test, y_test)}\n")
+print("----\n")
 
 # Save model and scaler to disk
 dump(reg, 'ndvi_predictor.joblib')
