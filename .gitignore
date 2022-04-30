@@ -145,3 +145,6 @@ tflogs/
 
 # TFLite models
 *.tflite
+
+# results directory
+results/

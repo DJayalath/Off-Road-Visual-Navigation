@@ -19,14 +19,13 @@ import cv2
 import time
 
 # Keep the same as square root of N in the paper.
-NUM_STRIPS = 8
-NEW_STRIPS = 8
+ROOT_N = 8
 
 N_WIDTH, N_HEIGHT = 640, 480
 
 # Margin should be in range 1 - 8 given 8x8 cost grid
 def margin_factor(c_grid, margin):
-    c_grid = c_grid.reshape(NEW_STRIPS, NEW_STRIPS)
+    c_grid = c_grid.reshape(ROOT_N, ROOT_N)
 
     # Each cell should collect neighbour costs in Gaussian fashion.
     # Make Gaussian square rather than straight
@@ -56,8 +55,8 @@ def visualise(image, paths, c_grid):
     image=cv2.resize(image, (N_WIDTH, N_HEIGHT))
 
     h, w = image.shape[:2]
-    x_stride = w // NEW_STRIPS
-    y_stride = h // NEW_STRIPS
+    x_stride = w // ROOT_N
+    y_stride = h // ROOT_N
 
     cost_map = np.zeros(image.shape, dtype=np.uint8)
 
@@ -80,17 +79,17 @@ def visualise(image, paths, c_grid):
         xs, ys = [], []
         for v in p:
             # Start node
-            if v == (NEW_STRIPS * NEW_STRIPS):
+            if v == (ROOT_N * ROOT_N):
                 # print(w, w / 2, "START POS")
                 xs.append(w / 2)
                 ys.append(0)
             else:
-                xs.append((w // NEW_STRIPS) * 0.5 + (v % NEW_STRIPS) * (w // NEW_STRIPS))
-                ys.append(h - (v // NEW_STRIPS) * (h // NEW_STRIPS) - (h // NEW_STRIPS) * 0.5)  # - (h // NEW_STRIPS) * 0.5)
+                xs.append((w // ROOT_N) * 0.5 + (v % ROOT_N) * (w // ROOT_N))
+                ys.append(h - (v // ROOT_N) * (h // ROOT_N) - (h // ROOT_N) * 0.5)
 
         # Obligatory starting pos behind camera
         xs.append(w / 2)
-        ys.append(- h // NEW_STRIPS)
+        ys.append(- h // ROOT_N)
         
         for i in range(0, len(xs) - 1):
             plt.plot(xs[i:i+2], ys[i:i+2], '-', color=colors[z], linewidth=4.0)
@@ -103,6 +102,7 @@ def visualise(image, paths, c_grid):
     plt.axis((0, 640, 0, 480))
     timestr = time.strftime("%Y%m%d-%H%M%S")
     plt.tight_layout()
+
     plt.savefig(f'results/{timestr}.png', dpi=600, bbox_inches='tight')
     plt.show()
 
@@ -130,11 +130,11 @@ def convert_path(idx_path):
         p1 = path[i]
         p2 = path[i + 1]
         
-        if p2 == p1 - NEW_STRIPS:
+        if p2 == p1 - ROOT_N:
             head = 'N'
-        elif p2 == p1 - NEW_STRIPS + 1:
+        elif p2 == p1 - ROOT_N + 1:
             head = 'NE'
-        elif p2 == p1 - NEW_STRIPS - 1:
+        elif p2 == p1 - ROOT_N - 1:
             head = 'NW'
         elif p2 == p1 + 1:
             head = 'W'
