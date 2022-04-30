@@ -142,3 +142,6 @@ tflogs/
 
 # weight files
 *.hdf5
+
+# TFLite models
+*.tflite

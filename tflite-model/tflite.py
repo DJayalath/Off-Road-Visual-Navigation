@@ -30,10 +30,9 @@ def generate_tflite(model):
 
 if __name__ == "__main__":
 
-    import os
-    os.chdir('../regional-cost-model')
+    import sys
+    sys.path.append('./regional-cost-model')
     from model import create_model
-    os.chdir('../tflite-model')
 
     m = create_model()
     m.load_weights('model.hdf5')
