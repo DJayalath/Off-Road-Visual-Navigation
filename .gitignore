@@ -133,3 +133,12 @@ dmypy.json
 
 # label files
 *.json
+
+# TensorFlow logs
+tflogs/
+
+# model history
+*.pkl
+
+# weight files
+*.hdf5

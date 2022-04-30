@@ -34,14 +34,14 @@ from model_datagen import RegressionGenerator
 print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
 
 # Make sure this is equal to the square root of N in the paper.
-NUM_STRIPS = 8
+ROOT_N = 8
 
-# Input size. 224x224 recommended for MobileNetV3
-N = 224
+# Expected input dimension for network
+INPUT_SHAPE = 224
 
 # Preprocess for MobileNetV3 including resizing of images
 def preprocess(x):
-    x = cv2.resize(x, (N, N))
+    x = cv2.resize(x, (INPUT_SHAPE, INPUT_SHAPE))
     x = tf.keras.applications.mobilenet_v3.preprocess_input(x)
     return x
 
@@ -49,7 +49,7 @@ def preprocess(x):
 def create_model():
 
     # Base: MobileNetv3
-    base_model = tf.keras.applications.MobileNetV3Small(weights='imagenet', include_top=False, input_shape=(N, N, 3))
+    base_model = tf.keras.applications.MobileNetV3Small(weights='imagenet', include_top=False, input_shape=(INPUT_SHAPE, INPUT_SHAPE, 3))
     x = base_model.output
 
     # Aggregate features of base
@@ -57,7 +57,7 @@ def create_model():
 
     # N output heads with own MLPs
     outputs = []
-    for i in range(NUM_STRIPS ** 2):
+    for i in range(ROOT_N ** 2):
         c = tf.keras.layers.Dense(64, activation=tf.keras.activations.relu)(x)
         c = tf.keras.layers.Dense(128, activation=tf.keras.activations.relu)(c)
         c = tf.keras.layers.Dense(128, activation=tf.keras.activations.relu)(c)
@@ -85,7 +85,7 @@ def train():
     # Set loss function and metrics to track
     loss = {}
     metrics = {}
-    for i in range(NUM_STRIPS ** 2):
+    for i in range(ROOT_N ** 2):
 
         loss[f'cost_{i}'] = tf.keras.losses.MeanAbsoluteError()
 
