@@ -34,7 +34,7 @@ RGB_FOREST = 'train/rgb'
 DEPTH_FOREST = 'train/depth'
 
 # Ensure this is the square root of N in the paper.
-NUM_STRIPS = 8
+ROOT_N = 8
 
 # Computes a level of obstruction for a given input (most likely a vertical pixel rectangle).
 def cost(depth, vi):
@@ -63,15 +63,15 @@ def cost(depth, vi):
 def cost_grid(depth, vi, g_mask):
 
     h, w = depth.shape
-    stride_y = h // NUM_STRIPS
-    stride_x = w // NUM_STRIPS
+    stride_y = h // ROOT_N
+    stride_x = w // ROOT_N
 
     cost_map = cost(depth, vi)
 
     if g_mask is not None:
         cost_map *= g_mask
 
-    c_grid = np.empty((NUM_STRIPS, NUM_STRIPS), dtype=np.float32)
+    c_grid = np.empty((ROOT_N, ROOT_N), dtype=np.float32)
     for i, y in enumerate(range(0, h, stride_y)):
         for j, x in enumerate(range(0, w, stride_x)):
             c_grid[i, j] = np.sum(cost_map[y : y + stride_y, x : x + stride_x])
@@ -114,7 +114,7 @@ def label(im_path):
 
     # For each image, we create a dictionary with cost for each patch
     record = {}
-    for i in range(NUM_STRIPS ** 2):
+    for i in range(ROOT_N ** 2):
         record[f'cost_{i}'] = float(c_grid[i])
     
     im_dict = {
@@ -149,7 +149,7 @@ def label_all():
         print("Finding max and min costs...")
         vmin, vmax = 99e9, 0
         for _, val in labels.items():
-            for i in range(NUM_STRIPS):
+            for i in range(ROOT_N):
                 v = val[f'cost_{i}']
                 if v < vmin:
                     vmin = v

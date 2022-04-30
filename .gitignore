@@ -130,3 +130,6 @@ dmypy.json
 
 # scikit-learn models
 *.joblib
+
+# label files
+*.json
