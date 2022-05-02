@@ -74,7 +74,7 @@ def tflite_predict(interpreter, img):
         names.append(int(name.replace('StatefulPartitionedCall:', '')))
 
     # FIXME: Change this!
-    # Reorder outputs of model. See Appendix D in the paper.
+    # Reorder outputs of model. See Appendix D in the paper and reorder.py.
     mapping = [54, 27, 28, 47, 10, 53, 14, 42, 30, 4, 56, 1, 21, 24, 15,
      19, 22, 3, 39, 44, 29, 11, 8, 40, 52, 45, 20, 32, 23, 12, 25, 18, 57,
       43, 55, 5, 31, 61, 46, 63, 59, 2, 51, 41, 0, 9, 36, 6, 33, 50, 62, 7,
