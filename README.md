@@ -24,5 +24,17 @@ Notes: Prior to step 5, it may be necessary to resolve the order of the model's 
 - pymavlink 2.x 
 
 Other miscellaneous libraries (e.g. matplotlib) will be needed to run the code but are not required.
+
+## Test Configuration from Paper
+- Hardware: Raspberry Pi 4B (TBC GiB)
+- Traversal Cost Labelling Parameters: (γ, α, β) = (0, 1, 0.1)
+- Model Parameters:
+  - Optimizer: Adam
+  - Batch Size: 32
+  - Loss: MAE
+  - Epochs: 100
+  - Train-Test Split: 80-20
+  - Number of Instances: 9700
+
 ## License
 This work is all the original work of the author and is distributed under the GNU General Public License v3.0.
