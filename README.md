@@ -14,7 +14,7 @@ Setup: Clone the repository and follow the instructions in the headers of each o
 Notes: Prior to step 5, it may be necessary to resolve the order of the model's output heads. See Appendix D of the paper and `tflite-model/reorder.py`. For further information on any of the steps, see the paper and included comments in the code.
 
 ## Demo
-[![Demo video](images/cropped_movie_link_play.png)](https://www.youtube.com/watch?v=ktvmSO5Y_PE)
+[![Demo video](images/cropped_movie_link_play.jpg)](https://www.youtube.com/watch?v=ktvmSO5Y_PE)
 
 ## Requirements
 ### Training
