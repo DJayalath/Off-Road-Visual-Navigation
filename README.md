@@ -2,6 +2,12 @@
 
 This work provides a method for real-time visual navigation for ground robots in unstructured environments. The algorithm uses a convolutional network to propose a set of trajectories and costs for efficient and collision-free movement from a single webcam. The models in this project are trained to specifically target forests. For more details, see the paper.
 
+<p align="center">
+  <img src="images/prediction_example.png" />
+  <br>
+  Figure: Top three trajectories (green, yellow, red) predicted from a forest scene.
+</p>
+
 ## Quick Start
 Setup: Clone the repository and follow the instructions in the headers of each of the files listed below.
 
