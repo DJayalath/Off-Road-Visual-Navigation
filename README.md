@@ -1,6 +1,6 @@
 # Real-Time Neural Visual Navigation for Autonomous Off-Road Robots
 
-This work provides a method for real-time visual navigation for ground robots in unstructured environments. The algorithm uses a convolutional network to propose a set of trajectories and costs for efficient and collision-free movement from a single webcam. The models in this project are trained to specifically target forests. For more details, see the paper.
+This work provides a method for real-time visual navigation for ground robots in unstructured environments. The algorithm uses a convolutional network to propose a set of trajectories and costs for efficient and collision-free movement from a single webcam. The models in this project are trained to specifically target forests. For more details, see the [paper](https://dulhanjayalath.com/report-compressed.pdf).
 
 <p align="center">
   <img src="images/prediction_example.png" />
